@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetch Example</title>
+</head>
+<body>
+    <textarea id="message"></textarea>
+    <button onclick="sendMessage()">Send Message</button>
+    <script>
+        function sendMessage() {
+            fetch('/api', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify("Act as a helpful, productive, and organized assistant. Create a work plan for the following task: " && document.getElementById('message').value)
+            })
+            .then(response => response.json())
+            .then(data => console.log(data + "NOTE TO JULIET: put this into a <div> on the web page to show the full work plan. If it were me, I would display this as a modal window on the page."))
+            .catch(error => console.error(error));
+
+        }
+    </script>
+</body>
+</html>
